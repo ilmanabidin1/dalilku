@@ -61,3 +61,11 @@ src/lib/            tipe data, penyimpanan, pencarian, pengaman AI, autentikasi 
 src/test/           tes vitest
 db/schema.sql       skema PostgreSQL sasaran
 ```
+
+## Deploy ke Railway
+
+Konfigurasi ada di `railway.json` (builder Railpack, healthcheck `/api/health`). Pengaturan layanan:
+
+- Volume terpasang di `/data`, dengan `STORE_PATH=/data/store.json` agar data tidak hilang saat redeploy.
+- Variabel wajib: `ADMIN_PASSWORD_KURATOR`, `ADMIN_PASSWORD_PENGAWAS`, `ADMIN_SESSION_SECRET`, `NEXT_PUBLIC_SITE_URL` (alamat publik, dibaca saat build).
+- Opsional: `ANTHROPIC_API_KEY` untuk ringkasan AI, `SHOW_DRAFT_CARDS=true` selama uji prototipe.
